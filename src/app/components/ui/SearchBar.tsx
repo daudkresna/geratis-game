@@ -50,7 +50,7 @@ const SearchBar = ({ games }: { games: GameData[] }) => {
       />
       <div className="mx-auto grid grid-cols-3 gap-4 p-4">
         {term != "" && showSuggestion
-          ? searchResults.map((game) => <GameCard {...game} />)
+          ? searchResults.map((game) => <GameCard key={game.id} {...game} />)
           : null}
       </div>
     </form>
