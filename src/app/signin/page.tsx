@@ -1,7 +1,16 @@
+import { getServerSession } from "next-auth";
 import React from "react";
+import authOptions from "../api/auth/[...nextauth]/options";
+import SignInForm from "../components/forms/SignInForm";
 
-const page = () => {
-  return <div>Ini halaman SignIn</div>;
+const page = async () => {
+  const session = await getServerSession(authOptions);
+  console.log(session);
+  return (
+    <div className="h-calc(100vh-4rem) flex items-center justify-center">
+      <SignInForm />
+    </div>
+  );
 };
 
 export default page;
