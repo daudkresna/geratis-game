@@ -51,6 +51,7 @@ export const authOptions: NextAuthOptions = {
         const match = await prisma.user.findUnique({
           select: {
             id: true,
+            name: true,
             email: true,
             hashedPassword: true,
           },

@@ -6,7 +6,6 @@ import { SignInButton, SignOutButton } from "./ui/AuthButton";
 
 const NavBar = async () => {
   const session = await getServerSession(authOptions);
-  console.log("session", session);
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">

@@ -27,7 +27,9 @@ export default async function Home() {
             </Link>
           ))}
           <div className="inline-flex justify-end">
-            <button className="btn btn-accent w-36">Load More</button>
+            <Link href="/games">
+              <button className="btn btn-accent w-36">Load More</button>
+            </Link>
           </div>
         </div>
         <div className="relative flex flex-col gap-4 px-2">
