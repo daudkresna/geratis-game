@@ -8,6 +8,10 @@ const nextConfig = {
         port: "",
         pathname: "/g/**",
       },
+      {
+        protocol: "https",
+        hostname: "img.daisyui.com",
+      },
     ],
   },
 };

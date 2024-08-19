@@ -24,7 +24,7 @@ const page = async ({ params }: { params: { id: string } }) => {
         userId: session.user.id,
       },
     });
-    console.log(findAnime);
+    // console.log(findAnime);
     if (findAnime.length != 0) {
       isFavorite = true;
     }
@@ -72,7 +72,8 @@ const page = async ({ params }: { params: { id: string } }) => {
       </div>
 
       {/* Comment Section */}
-      <GameCommentSection />
+      <GameCommentSection gameId={game.id.toString()} />
+      <div className="h-screen"></div>
     </div>
   );
 };

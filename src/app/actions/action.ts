@@ -3,6 +3,9 @@
 import prisma from "../lib/prisma";
 import { revalidatePath } from "next/cache";
 import { User, validationUser } from "../lib/validationUser";
+import { getServerSession } from "next-auth";
+import authOptions from "../api/auth/[...nextauth]/options";
+import { redirect } from "next/navigation";
 
 export async function signInAction(formData: FormData) {
   const username = formData.get("username");
@@ -65,6 +68,25 @@ export async function addToCollectionAction(formData: FormData) {
   revalidatePath(`/game/${gameId}`);
 }
 
+export async function addCommentAction(formData: FormData) {
+  const session = await getServerSession(authOptions);
+  if (session) {
+    console.log("MASUK SINI");
+    const comment = formData.get("comment") as string;
+    const userId = formData.get("userId") as string;
+    const gameId = formData.get("gameId") as string;
+    await prisma.comment.create({
+      data: {
+        userId: userId,
+        gameId: gameId,
+        comment: comment,
+      },
+    });
+    revalidatePath(`/game/${gameId}`);
+  } else {
+    return redirect("/signin");
+  }
+}
 export async function revalidateSignIn() {
   return revalidatePath("/");
 }
