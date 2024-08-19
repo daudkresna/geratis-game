@@ -22,7 +22,7 @@ const GameCard = ({
         />
       </figure>
       <div className="card-body">
-        <h2 className="card-title truncate">{title}</h2>
+        <h2 className="card-title block truncate">{title}</h2>
         <p className="truncate">{short_description}</p>
         <div className="card-actions justify-end">
           <Link href={`/game/${id.toString()}`}>

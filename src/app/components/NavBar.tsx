@@ -21,6 +21,8 @@ const NavBar = async () => {
           <li>
             <Link href="/games">Games</Link>
           </li>
+          <li>{session && <Link href="/profile">Profile</Link>}</li>
+
           <li>{session ? <SignOutButton /> : <SignInButton />}</li>
         </ul>
       </div>

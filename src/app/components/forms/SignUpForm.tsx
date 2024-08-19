@@ -1,8 +1,9 @@
 "use client";
-import { signUpAction } from "@/app/actions/action";
+import { revalidateSignIn, signUpAction } from "@/app/actions/action";
 import React, { useState } from "react";
 import FormButton from "../ui/FormButton";
 import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
 
 const SignUpForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
@@ -17,6 +18,7 @@ const SignUpForm = () => {
     } else {
       console.log("MASUK SUKSES", success);
       toast.success("Account created successfully");
+      redirect("/signin");
     }
   };
   return (
