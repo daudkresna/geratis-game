@@ -49,7 +49,7 @@ const SignInForm = () => {
       </form>
       <div className="mt-4">
         <Link href="/signup" className="group w-full">
-          Don't have an account?{" "}
+          New here?{" "}
           <span className="duration-300 ease-in-out group-hover:underline">
             {" "}
             Sign up here{" "}

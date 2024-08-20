@@ -30,7 +30,7 @@ const GameCommentSection = async ({ gameId }: { gameId: string }) => {
     <div className="flex flex-col gap-4">
       <h1 className="text-xl font-bold text-primary md:text-4xl">Comments</h1>
       <h1 className="text-center text-lg font-bold text-secondary md:text-2xl">
-        What's your opinion?
+        Bagikan Pendapatmu
       </h1>
       <div className="flex flex-row items-center justify-center gap-4">
         <CommentForm gameId={gameId} userId={session?.user.id} />
