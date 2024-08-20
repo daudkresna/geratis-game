@@ -23,7 +23,6 @@ const page = async ({
 
   //Slicing item sesuai pagination
   const filterPopular = data.slice(start, end);
-  console.log(limit);
   return (
     <>
       <div className="flex flex-col items-center gap-4 px-16">

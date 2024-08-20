@@ -25,9 +25,8 @@ const GameCommentSection = async ({ gameId }: { gameId: string }) => {
       },
     },
   });
-  console.log(comments);
   return (
-    <div className="flex flex-col gap-4">
+    <div className="mb-8 flex flex-col gap-4">
       <h1 className="text-xl font-bold text-primary md:text-4xl">Comments</h1>
       <h1 className="text-center text-lg font-bold text-secondary md:text-2xl">
         Bagikan Pendapatmu

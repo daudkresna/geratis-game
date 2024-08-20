@@ -9,7 +9,6 @@ const SignUpForm = () => {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const handleAction = async (formData: FormData) => {
     const success = await signUpAction(formData);
-    console.log(success);
 
     if (!success?.success) {
       setErrorMessage(success.message);

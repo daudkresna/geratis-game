@@ -13,7 +13,6 @@ export const addNewUser = async ({
   const saltRounds: number = 10;
   const genSalt = await bcrypt.genSalt(saltRounds);
   const hashedPassword: string = await bcrypt.hash(password, genSalt);
-  console.log("hashedPassword", hashedPassword);
 
   // const user = await prisma.user.create({
   //     data: {

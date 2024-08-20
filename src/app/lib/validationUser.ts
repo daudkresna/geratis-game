@@ -14,7 +14,6 @@ export const validationUser = ({ data }: { data: User }) => {
   if (!newUser.success) {
     let errorMessage: string = "";
     newUser.error?.issues.forEach((issue) => {
-      console.log(issue);
       errorMessage += issue.message + "\n";
     });
     return { success: false, error: errorMessage };

@@ -10,7 +10,6 @@ import { redirect } from "next/navigation";
 export async function signInAction(formData: FormData) {
   const username = formData.get("username");
   const password = formData.get("password");
-  console.log(username, password);
 }
 
 export async function signUpAction(formData: FormData) {
@@ -35,7 +34,6 @@ export async function signUpAction(formData: FormData) {
     const saltRounds: number = 10;
     const genSalt = await bcrypt.genSalt(saltRounds);
     const hashedPassword: string = await bcrypt.hash(password, genSalt);
-    console.log("hashedPassword", hashedPassword);
     const newUser = await prisma.user.create({
       data: {
         name,

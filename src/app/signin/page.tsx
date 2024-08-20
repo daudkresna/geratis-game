@@ -5,7 +5,6 @@ import SignInForm from "../components/forms/SignInForm";
 
 const page = async () => {
   const session = await getServerSession(authOptions);
-  console.log(session);
   return (
     <div className="h-calc(100vh-4rem) flex items-center justify-center">
       <SignInForm />

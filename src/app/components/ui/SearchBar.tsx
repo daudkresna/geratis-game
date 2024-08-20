@@ -28,7 +28,7 @@ const SearchBar = ({ games }: { games: GameData[] }) => {
         setSearchResults(newResults.slice(0, 5));
         setShowSuggestion(true);
       }
-    }, 2000);
+    }, 500);
 
     return () => {
       clearTimeout(timeOutId);
@@ -38,7 +38,7 @@ const SearchBar = ({ games }: { games: GameData[] }) => {
 
   return (
     <form
-      className="form-control w-full justify-start"
+      className="form-control w-full justify-start px-4 md:px-0"
       onSubmit={(e) => handleSubmit(e, term)}
     >
       <input
@@ -50,7 +50,7 @@ const SearchBar = ({ games }: { games: GameData[] }) => {
         }}
         value={term}
       />
-      <div className="mx-auto grid grid-cols-3 gap-4 p-4">
+      <div className="grid grid-cols-1 place-items-center gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
         {term != "" && showSuggestion
           ? searchResults.map((game) => <GameCard key={game.id} {...game} />)
           : null}
