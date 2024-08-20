@@ -3,28 +3,18 @@ import { getServerSession } from "next-auth";
 import authOptions from "../api/auth/[...nextauth]/options";
 import CommentForm from "./forms/CommentForm";
 import prisma from "../lib/prisma";
-import Image from "next/image";
 import BubbleChat from "./BubbleChat";
 
 const GameCommentSection = async ({ gameId }: { gameId: string }) => {
   const session = await getServerSession(authOptions);
-  //   const comments = await prisma.user.findMany({
-  //     select: {
-  //       name: true,
-  //       comments: {
-  //         select: {
-  //           createdAt: true,
-  //           updatedAt: true,
-  //           comment: true,
-  //         },
-  //       },
-  //     },
-  //   });
+
+  //Get Comments
   const comments = await prisma.comment.findMany({
     where: {
       gameId: gameId,
     },
     select: {
+      id: true,
       comment: true,
       createdAt: true,
       user: {
@@ -38,8 +28,8 @@ const GameCommentSection = async ({ gameId }: { gameId: string }) => {
   console.log(comments);
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-4xl font-bold text-primary">Comments</h1>
-      <h1 className="text-center text-2xl font-bold text-secondary">
+      <h1 className="text-xl font-bold text-primary md:text-4xl">Comments</h1>
+      <h1 className="text-center text-lg font-bold text-secondary md:text-2xl">
         What's your opinion?
       </h1>
       <div className="flex flex-row items-center justify-center gap-4">
@@ -48,16 +38,18 @@ const GameCommentSection = async ({ gameId }: { gameId: string }) => {
       <div>
         {comments.length > 0 ? (
           comments.map((comment) => (
-            <BubbleChat
-              comment={comment.comment}
-              name={comment.user.name as string}
-              commentDate={comment.createdAt.toLocaleDateString()}
-              image={
-                comment.user.image
-                  ? comment.user.image
-                  : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              }
-            />
+            <div className="max-w-md" key={comment.id}>
+              <BubbleChat
+                comment={comment.comment}
+                name={comment.user.name as string}
+                commentDate={comment.createdAt.toLocaleDateString()}
+                image={
+                  comment.user.image
+                    ? comment.user.image
+                    : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                }
+              />
+            </div>
           ))
         ) : (
           <p>No comments yet</p>

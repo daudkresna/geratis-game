@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import { Toaster } from "react-hot-toast";
+import Drawer from "./components/Drawer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,8 @@ export default function RootLayout({
     <html data-theme="retro" lang="en">
       <body className={inter.className}>
         <Toaster position="top-right" />
-        <NavBar />
+        <Drawer />
+
         {children}
       </body>
     </html>

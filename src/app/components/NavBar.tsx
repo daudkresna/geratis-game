@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import authOptions from "../api/auth/[...nextauth]/options";
 import { SignInButton, SignOutButton } from "./ui/AuthButton";
+import Drawer from "./Drawer";
 
 const NavBar = async () => {
   const session = await getServerSession(authOptions);
@@ -13,7 +14,7 @@ const NavBar = async () => {
           Geratis
         </Link>
       </div>
-      <div className="flex-none">
+      <div className="hidden flex-none md:block">
         <ul className="menu menu-horizontal inline-flex items-center gap-x-4 px-1">
           <li>
             <Link href="/search">Search</Link>
@@ -21,8 +22,11 @@ const NavBar = async () => {
           <li>
             <Link href="/games">Games</Link>
           </li>
-          <li>{session && <Link href="/profile">Profile</Link>}</li>
-
+          {session && (
+            <li>
+              <Link href="/profile">Profile</Link>
+            </li>
+          )}
           <li>{session ? <SignOutButton /> : <SignInButton />}</li>
         </ul>
       </div>

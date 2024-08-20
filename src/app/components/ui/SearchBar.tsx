@@ -8,6 +8,7 @@ const SearchBar = ({ games }: { games: GameData[] }) => {
   const [searchResults, setSearchResults] = useState<GameData[]>(games);
   const [showSuggestion, setShowSuggestion] = useState<boolean>(false);
 
+  //Dijalankan ketika user menekan tombol enter
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement>,
     term: string,
@@ -19,6 +20,7 @@ const SearchBar = ({ games }: { games: GameData[] }) => {
     e.currentTarget.reset();
   };
 
+  //Dijalankan ketika user berhenti mengetik
   useEffect(() => {
     const timeOutId = setTimeout(() => {
       const newResults = games.filter((game) => game.title.includes(term));

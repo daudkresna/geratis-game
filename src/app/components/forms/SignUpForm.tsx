@@ -12,11 +12,9 @@ const SignUpForm = () => {
     console.log(success);
 
     if (!success?.success) {
-      console.log("MASUK GAGAL", success);
       setErrorMessage(success.message);
       return toast.error("Account creation failed");
     } else {
-      console.log("MASUK SUKSES", success);
       toast.success("Account created successfully");
       redirect("/signin");
     }
@@ -44,7 +42,9 @@ const SignUpForm = () => {
           name="password"
           className="rounded-sm bg-secondary-content px-4 py-2 text-white"
         />
-        <FormButton>Sign Up</FormButton>
+        <div className="flex justify-center">
+          <FormButton>Sign Up</FormButton>
+        </div>
         <pre>{errorMessage}</pre>
       </form>
     </div>

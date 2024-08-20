@@ -43,7 +43,9 @@ const SignInForm = () => {
           name="password"
           className="rounded-sm bg-secondary-content px-4 py-2 text-white"
         />
-        <FormButton>Sign In</FormButton>
+        <div className="flex justify-center">
+          <FormButton>Sign In</FormButton>
+        </div>
       </form>
       <div className="mt-4">
         <Link href="/signup" className="group w-full">

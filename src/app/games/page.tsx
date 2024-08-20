@@ -27,11 +27,11 @@ const page = async ({
   return (
     <>
       <div className="flex flex-col items-center gap-4 px-16">
-        <div className="flex w-full flex-row items-center justify-between">
+        <div className="flex w-full flex-col items-center justify-between gap-4 md:flex-row">
           <h1 className="font-bold">POPULAR GAME</h1>
           <PaginationButton page={currentPage} limit={limit} />
         </div>
-        <div className="grid grid-cols-3 grid-rows-3 justify-items-center gap-8">
+        <div className="grid grid-cols-1 justify-items-center gap-8 md:grid-cols-3 md:grid-rows-3">
           {filterPopular.map((game) => (
             <GameCard key={game.id} {...game} />
           ))}

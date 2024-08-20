@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const User = z.object({
   name: z.string().min(5, { message: "Name too short" }),
-  email: z.string().email().min(5, { message: "Invalid email" }),
+  email: z.string().email(),
   password: z.string().min(5, { message: "Password too short" }),
 });
 
@@ -14,6 +14,7 @@ export const validationUser = ({ data }: { data: User }) => {
   if (!newUser.success) {
     let errorMessage: string = "";
     newUser.error?.issues.forEach((issue) => {
+      console.log(issue);
       errorMessage += issue.message + "\n";
     });
     return { success: false, error: errorMessage };

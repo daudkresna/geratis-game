@@ -24,7 +24,10 @@ export async function signUpAction(formData: FormData) {
     password: password,
   };
 
+  // USER VALIDATION
   const validation = validationUser({ data });
+
+  //CHECK VALIDATION
   if (!validation.success) {
     return { success: false, message: validation.error };
   } else {
@@ -71,18 +74,17 @@ export async function addToCollectionAction(formData: FormData) {
 export async function addCommentAction(formData: FormData) {
   const session = await getServerSession(authOptions);
   if (session) {
-    console.log("MASUK SINI");
     const comment = formData.get("comment") as string;
     const userId = formData.get("userId") as string;
     const gameId = formData.get("gameId") as string;
-    await prisma.comment.create({
+    const newComment = await prisma.comment.create({
       data: {
         userId: userId,
         gameId: gameId,
         comment: comment,
       },
     });
-    revalidatePath(`/game/${gameId}`);
+    return newComment;
   } else {
     return redirect("/signin");
   }
