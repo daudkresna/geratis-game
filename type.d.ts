@@ -24,3 +24,33 @@ export type GameData = {
     image: string;
   }[];
 };
+
+export type Comment = {
+  id: string;
+  comment: string;
+  createdAt: Date;
+  userId: string;
+  gameId: string;
+};
+
+export type UserComment = {
+  name: string;
+  email: string;
+  image: string;
+  comments: Comment[];
+};
+
+export type CommentResponse = {
+  status: number;
+  data: UserComment | null;
+};
+
+export type GameComments = {
+  id: string;
+  comment: string;
+  createdAt: Date;
+  user: {
+    name: string;
+    image: string;
+  };
+};

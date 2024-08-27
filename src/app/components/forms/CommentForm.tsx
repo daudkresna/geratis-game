@@ -8,9 +8,11 @@ import { revalidatePath } from "next/cache";
 const CommentForm = ({
   gameId,
   userId,
+  gameName,
 }: {
   gameId: string;
   userId?: string;
+  gameName: string;
 }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const handleAction = async (formData: FormData) => {
@@ -28,6 +30,7 @@ const CommentForm = ({
     >
       <input type="text" name="gameId" value={gameId} hidden readOnly />
       <input type="text" name="userId" value={userId} hidden readOnly />
+      <input type="text" name="gameName" value={gameName} hidden readOnly />
       <textarea
         name="comment"
         placeholder="Write your comment here"

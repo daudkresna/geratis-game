@@ -47,7 +47,7 @@ const SignInForm = () => {
           <FormButton>Sign In</FormButton>
         </div>
       </form>
-      <div className="mt-4">
+      <div className="mt-4 text-center">
         <Link href="/signup" className="group w-full">
           New here?{" "}
           <span className="duration-300 ease-in-out group-hover:underline">

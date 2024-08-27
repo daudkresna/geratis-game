@@ -23,7 +23,9 @@ const SearchBar = ({ games }: { games: GameData[] }) => {
   //Dijalankan ketika user berhenti mengetik
   useEffect(() => {
     const timeOutId = setTimeout(() => {
-      const newResults = games.filter((game) => game.title.includes(term));
+      const newResults = games.filter((game) =>
+        game.title.toLowerCase().includes(term.toLowerCase()),
+      );
       if (newResults.length != 0 && term != "") {
         setSearchResults(newResults.slice(0, 5));
         setShowSuggestion(true);
@@ -50,7 +52,7 @@ const SearchBar = ({ games }: { games: GameData[] }) => {
         }}
         value={term}
       />
-      <div className="grid grid-cols-1 place-items-center gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 place-items-start gap-4 py-2 md:grid-cols-2 lg:grid-cols-3">
         {term != "" && showSuggestion
           ? searchResults.map((game) => <GameCard key={game.id} {...game} />)
           : null}

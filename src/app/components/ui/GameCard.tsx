@@ -13,7 +13,7 @@ const GameCard = ({
   id: number;
 }) => {
   return (
-    <div className="group card w-80 bg-base-100 shadow-xl">
+    <div className="group card w-80 bg-secondary shadow-xl">
       <figure>
         <img
           src={thumbnail}
@@ -26,7 +26,7 @@ const GameCard = ({
         <p className="truncate">{short_description}</p>
         <div className="card-actions justify-end">
           <Link href={`/game/${id.toString()}`}>
-            <button className="btn btn-primary">Check</button>
+            <button className="btn btn-accent">Check</button>
           </Link>
         </div>
       </div>

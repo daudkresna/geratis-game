@@ -9,25 +9,28 @@ import { addToCollectionAction } from "@/app/actions/action";
 import GameCommentSection from "@/app/components/GameCommentSection";
 
 const page = async ({ params }: { params: { id: string } }) => {
+  const session = await getServerSession(authOptions);
   const gamesRes = await fetch(
     `${process.env.API_BASE_URL}/game?id=${params.id}`,
   );
   const game: GameData = await gamesRes.json();
-  const session = await getServerSession(authOptions);
-  let isFavorite = false;
+  // const res = await fetch(
+  //   `${process.env.BASE_URL}/users/${session?.user.id}/favorite?gameId=${game.id.toString()}`,
+  //   {
+  //     next: { tags: ["favorite"] },
+  //     cache: "no-store",
+  //   },
+  // );
+  // const isFavorite = await res.json();
+  // console.log(isFavorite);
 
-  if (session) {
-    const findAnime = await prisma.favoriteGame.findMany({
-      where: {
-        gameId: game.id.toString(),
-        userId: session.user.id,
-      },
-    });
-    if (findAnime.length != 0) {
-      isFavorite = true;
-    }
-  }
-
+  const favorite = await prisma.favoriteGame.findMany({
+    where: {
+      userId: session?.user.id,
+      gameId: game.id.toString(),
+    },
+  });
+  console.log(favorite);
   return (
     <div className="h-screen w-full flex-col items-center justify-center px-8 md:px-16">
       {/* About Section */}
@@ -37,7 +40,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             {game.title}{" "}
             <div className="badge badge-secondary">{game.status}</div>
           </h1>
-          {session && !isFavorite ? (
+          {session && favorite.length === 0 ? (
             <Button
               title="Add To Favorite"
               gameId={game.id.toString()}
@@ -60,7 +63,7 @@ const page = async ({ params }: { params: { id: string } }) => {
         <h1 className="text-xl font-bold text-primary md:text-4xl">
           Screenshots
         </h1>
-        <div className="mb-8 grid grid-cols-1 place-items-center items-center justify-center gap-4 md:grid-cols-3">
+        <div className="mb-8 grid grid-cols-1 place-items-center items-center justify-center gap-4 md:grid-cols-2 lg:grid-cols-3">
           {game.screenshots.map((screenshot) => (
             <Modal
               alt={game.title}
@@ -73,7 +76,7 @@ const page = async ({ params }: { params: { id: string } }) => {
       </div>
 
       {/* Comment Section */}
-      <GameCommentSection gameId={game.id.toString()} />
+      <GameCommentSection gameId={game.id.toString()} gameName={game.title} />
     </div>
   );
 };

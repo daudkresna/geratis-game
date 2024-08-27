@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import FormButton from "./FormButton";
 
 const Button = ({
   userId,
@@ -28,9 +29,7 @@ const Button = ({
         value={gameThumbnail}
         readOnly
       />
-      <button type="submit" className="btn btn-primary">
-        {title}
-      </button>
+      <FormButton>{title}</FormButton>
     </form>
   );
 };

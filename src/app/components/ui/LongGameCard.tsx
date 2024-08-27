@@ -15,7 +15,7 @@ const LongGameCard = ({
   platform: string;
 }) => {
   return (
-    <div className="group flex items-center justify-center gap-4 p-2 shadow duration-300 ease-in-out hover:-translate-y-2 md:w-full">
+    <div className="group flex items-center justify-center gap-4 bg-secondary p-2 shadow duration-300 ease-in-out hover:-translate-y-2 md:w-full">
       <div className="relative min-h-12 min-w-24 overflow-hidden md:h-24 md:w-36 md:min-w-fit">
         <Image
           src={thumbnail}

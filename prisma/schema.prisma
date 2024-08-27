@@ -55,6 +55,7 @@ model Comment {
   id String @id @default(cuid())
   userId String
   gameId String
+  gameName String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   comment String

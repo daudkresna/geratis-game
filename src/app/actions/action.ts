@@ -1,7 +1,7 @@
 "use server";
 
 import prisma from "../lib/prisma";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { User, validationUser } from "../lib/validationUser";
 import { getServerSession } from "next-auth";
 import authOptions from "../api/auth/[...nextauth]/options";
@@ -71,22 +71,26 @@ export async function addToCollectionAction(formData: FormData) {
 
 export async function addCommentAction(formData: FormData) {
   const session = await getServerSession(authOptions);
-  if (session) {
+  if (!session) {
+    return redirect("/signin");
+  } else {
     const comment = formData.get("comment") as string;
     const userId = formData.get("userId") as string;
     const gameId = formData.get("gameId") as string;
+    const gameName = formData.get("gameName") as string;
     const newComment = await prisma.comment.create({
       data: {
         userId: userId,
         gameId: gameId,
         comment: comment,
+        gameName: gameName,
       },
     });
+    await revalidateTag("comment");
     return newComment;
-  } else {
-    return redirect("/signin");
   }
 }
+
 export async function revalidateSignIn() {
   return revalidatePath("/");
 }
