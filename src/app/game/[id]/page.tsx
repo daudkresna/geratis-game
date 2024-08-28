@@ -30,7 +30,6 @@ const page = async ({ params }: { params: { id: string } }) => {
       gameId: game.id.toString(),
     },
   });
-  console.log(favorite);
   return (
     <div className="h-screen w-full flex-col items-center justify-center px-8 md:px-16">
       {/* About Section */}

@@ -7,7 +7,7 @@ import { SignInButton, SignOutButton } from "./ui/AuthButton";
 const Drawer = async () => {
   const session = await getServerSession(authOptions);
   return (
-    <div className="drawer drawer-end">
+    <div className="drawer drawer-end z-50">
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}

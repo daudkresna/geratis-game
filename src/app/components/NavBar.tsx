@@ -14,7 +14,7 @@ const NavBar = async () => {
           Geratis
         </Link>
       </div>
-      <div className="hidden flex-none md:block">
+      <div className="hidden flex-none md:z-50 md:block">
         <ul className="menu menu-horizontal inline-flex items-center gap-x-4 px-1">
           <li>
             <Link href="/search">Search</Link>
