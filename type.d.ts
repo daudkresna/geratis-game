@@ -27,10 +27,13 @@ export type GameData = {
 
 export type Comment = {
   id: string;
-  comment: string;
-  createdAt: Date;
   userId: string;
   gameId: string;
+  gameName: string;
+  createdAt: Date;
+  updatedAt: Date;
+  comment: string;
+  gameThumbnail: string;
 };
 
 export type UserComment = {
@@ -38,11 +41,26 @@ export type UserComment = {
   email: string;
   image: string;
   comments: Comment[];
+} | null;
+
+export type UserFavorites = {
+  favoriteGames: {
+    id: string;
+    userId: string;
+    gameId: string;
+    gameName: string;
+    gameThumbnail: string;
+  }[];
+};
+
+export type UserFavoritesResponse = {
+  status: number;
+  data: UserFavorites;
 };
 
 export type CommentResponse = {
   status: number;
-  data: UserComment | null;
+  data: UserComment;
 };
 
 export type GameComments = {

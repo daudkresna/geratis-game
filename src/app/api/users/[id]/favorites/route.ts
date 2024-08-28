@@ -1,21 +1,19 @@
 import prisma from "@/app/lib/prisma";
+import { GameData } from "../../../../../../type";
 
 export async function GET(
   request: Request,
   { params }: { params: { id: string } },
 ) {
-  const userComments = await prisma.user.findUnique({
+  const userFavorites = await prisma.user.findUnique({
     where: {
       id: params.id,
     },
     select: {
-      name: true,
-      email: true,
-      image: true,
-      comments: true,
+      favoriteGames: true,
     },
   });
-  if (!userComments || userComments.comments.length === 0) {
+  if (!userFavorites || userFavorites.favoriteGames.length === 0) {
     return Response.json({
       status: 404,
       data: "Not Found",
@@ -23,6 +21,6 @@ export async function GET(
   }
   return Response.json({
     status: 200,
-    data: userComments,
+    data: userFavorites,
   });
 }
