@@ -19,7 +19,7 @@ const Modal = ({ id, src, alt }: { id: string; src: string; alt: string }) => {
         <Image src={src} alt={alt} fill />
       </div>
       <dialog id={`my_modal_${id}`} className="modal">
-        <div className="modal-box relative h-1/2 w-3/4 md:h-[300px] md:w-[500px]">
+        <div className="modal-box relative h-1/2 w-full md:h-[300px] md:w-[500px]">
           <Image src={src} alt={alt} fill />
         </div>
         <form method="dialog" className="modal-backdrop">

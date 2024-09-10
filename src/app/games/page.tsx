@@ -14,10 +14,13 @@ const page = async ({
     platform?: string;
   };
 }) => {
+  //QUERY PARAMETER
   const sortBy = searchParams?.sortBy ?? "popularity";
   const category = searchParams?.category ?? "mmorpg";
   const platform = searchParams?.platform ?? "pc";
+  const currentPage = Number(searchParams?.page) || 1;
 
+  //FETCH DATA
   const res = await fetch(
     `${process.env.API_BASE_URL}/games?sort-by=${sortBy}&category=${category}&platform=${platform}`,
     {
@@ -25,11 +28,6 @@ const page = async ({
     },
   );
   const data: GameData[] = await res.json();
-  console.log(data);
-
-  //mengambil data dari url atau query
-
-  const currentPage = Number(searchParams?.page) || 1;
 
   //Pagination Item
   const perPage: number = 10;
